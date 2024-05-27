@@ -1,46 +1,24 @@
 """
 Setup file, and a place to keep the running items until they are used correctly
-Base Welcome from https://github.com/jacobcoro/PythonFlashCards/blob/master/Flashcards_0.1.py
+Base Welcome from https://github.com/jacobcoro/PythonFlashCards/blob/master/Flashcards_0.1.py Not sure if I need it
 """
 welcome = """
       Welcome to
       
-^_^   Flashcards   ^_^
+^_^   Daily Words   ^_^
 """
 
 menu = """\nmenu:
 
-1. View deck
-2. Add item
-3. Delete item
-4. Quiz yourself
-5. Quit
-
-Your choice: """
-
-test_type_prompt = """\nPlease choose quiz type:
-
-1. Multiple choice
-2. Write the answer
-3. Self report
-
-Your choice: """
-
-front_to_back_prompt = """\nPlease choose whether you'd like to be presented with 
-the front and guess the back, or vice versa:
-
-f. See front, guess back
-b. See back, guess front
-
-your choice:"""
+1. Add item
+2. Delete item
+3. Quit
 
 print(welcome)
 running = True
 while running:
     menu_choice = input(menu)
-    if menu_choice == "1":
-        print("\n" + "Current deck:\n" + print_deck(deck), "\n")
-    elif menu_choice == "2":
+        if menu_choice == "1":
         new_item_front = input("Please type the card front: ")
         new_item_back = input("Please type the card back: ")
         if new_item_front not in deck:
@@ -48,42 +26,15 @@ while running:
             print("Added successfully!")
         else:
             print("Word already in deck")
-    elif menu_choice == "3":
+    elif menu_choice == "2":
         remove = input("Please input the card front you'd like to remove: ")
         if remove in deck:
             print("Removed " + remove, "--->", deck[remove])
             del deck[remove]
         else:
             print("Word not in deck")
-    elif menu_choice == "4":
-        test_type = True
-        while test_type:
-            test_type = input(test_type_prompt)
-            if test_type == "1":
-                direction = input(front_to_back_prompt)
-                if direction == "f" or direction == "b":
-                    multiple_choice_quiz(deck, direction)
-                    test_type = False
-                else:
-                    print("Invalid entry")
-            elif test_type == "2":
-                direction = input(front_to_back_prompt)
-                if direction == "f" or direction == "b":
-                    write_answer_quiz(deck, direction)
-                    test_type = False
-                else:
-                    print("Invalid entry")
-            elif test_type == "3":
-                direction = input(front_to_back_prompt)
-                if direction == "f" or direction == "b":
-                    self_report_quiz(deck, direction)
-                    test_type = False
-                else:
-                    print("Invalid entry")
-            else:
-                print("Invalid choice")
-    elif menu_choice == "5":
-        print("Thanks for playing, see you next time!")
+    elif menu_choice == "3":
+        print("Thanks, see you next time!")
         running = False
     else:
         print("Invalid entry")
