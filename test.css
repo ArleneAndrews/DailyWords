@@ -1,0 +1,10 @@
+body {
+    
+    }
+    .rat {
+        --pinkaf: fda5ea;
+      background-color: black;
+    color: var(--pinkaf);
+    font-size: 16;
+    }
+    
