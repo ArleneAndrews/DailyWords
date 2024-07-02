@@ -61,6 +61,13 @@ sorry = {
 
 }
 
+speakEnglish ={
+"Spanish" : “¿Habla usted inglés?”,
+
+"German" : "“Sprechen Sie Englisch?”,
+
+ "French" : “Parlez-vous anglais ?”,
+}
 coffee = {
 "French": "Cafe",
 "Spanish": "Cafe",
@@ -73,18 +80,20 @@ welcome = """
       
 ^_^   Daily Words   ^_^
 """
-
-menu = """\nmenu:
-
-1. Add item
-2. Delete item
-3. Quit
-
-print(welcome)
+print (welcome)
 running = True
-while running:
-    menu_choice = input(menu)
-        if menu_choice == "1":
+
+while True:
+       print('Enter a choice:' )
+       print('1. Random card')
+       print('2. Add card')
+       print('3. Delete card')
+       print('4. Quit')
+       
+       choice = input()
+       if choice == '':
+           break
+if choice == "2":
         new_item_front = input("Please type the card front: ")
         new_item_back = input("Please type the card back: ")
         if new_item_front not in deck:
@@ -92,15 +101,15 @@ while running:
             print("Added successfully!")
         else:
             print("Word already in deck")
-    elif menu_choice == "2":
+elif choice == "3":
         remove = input("Please input the card front you'd like to remove: ")
         if remove in deck:
             print("Removed " + remove, "--->", deck[remove])
             del deck[remove]
         else:
             print("Word not in deck")
-    elif menu_choice == "3":
+elif choice == "4":
         print("Thanks, see you next time!")
         running = False
-    else:
+else:
         print("Invalid entry")
