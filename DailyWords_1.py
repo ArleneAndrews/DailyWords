@@ -8,80 +8,62 @@ import glob
 import os
 
 deck = {
-    greetings,
-    commonwords,
-    numbers,
-}
-
-greetings ={
-    hello= {"Gehellorman": "Hallo",
-            "French": "Bonjour",
-            "Spanish": "Buenos dias",
-            }
-
-nameIs ={
+    "hello": {
+        "German": "Hallo",
+        "French": "Bonjour",
+        "Spanish": "Buenos dias"
+        },
+    "nameIs": {
     "French": "Je m'appelle Arlene",
-"Spanish": "Me nombre es Arlene",
-"German":"Ich bin Arlene", 
-}
-
-youAre = {
-"French" : "Comment vous appelez-vous?",
-"Spanish" : "Como se llama?",
-"German" : "Wie is Ihr name?",
-}
-
-niceMeet = {
-    "Spanish" : "Mucho gusto en cenocerle.",
-    "French" :"Ravie de faire votre connaissance.",
-    "German" : "Schon, sie kennenzulernen.",
-    }
-
-howAreYou = {
-    "French": "Comment allez-vous?",
-"Spanish": "Como estas?",
-"German":"Wei geht es Ihnen?",
-}
-
-amWell = {
-    "French": "Je suis gien, merci",
-"Spanish": "Estoy muy bien",
-"German":"Mir geht es gut",
-}
-
-notWell = {
-    "French": "Je ne vais pas bien",
-"Spanish": "No estoy bien",
-"German":"Mir geht es nicht gut",
-}
-
-noSpeak ={
-    "French": "Je parle un peu de francais.",
-    "German" : "Ich spreche nur ein bisschen Deutsch",
-    "Spanish" : "Hablo un poco de Espanol.",
-}
-
-sorry = {
-    "French" : "Je suis desole.",
-    "Spanish" : "Lo Siento.",
-    "German" : "Es Tuit mir Lede",
-
-}
-
-speakEnglish ={
-"Spanish" : “¿Habla usted inglés?”,
-
-"German" : "“Sprechen Sie Englisch?”,
-
- "French" : “Parlez-vous anglais ?”,
-}
-}
-coffee = {
-"French": "Cafe",
-"Spanish": "Cafe",
-"German":"Kaffee",
-}       
-
+    "Spanish": "Me nombre es Arlene",
+    "German":"Ich bin Arlene"
+    },
+    "youAre": {
+        "French": "Comment vous appelez-vous?",
+        "Spanish": "Como se llama?",
+        "German": "Wie is Ihr name?"
+        },
+    "niceMeet": {
+        "Spanish": "Mucho gusto en cenocerle.",
+        "French":"Ravie de faire votre connaissance.",
+        "German": "Schon, sie kennenzulernen."
+        },
+    "howAreYou": {
+        "French": "Comment allez-vous?",
+        "Spanish": "Como estas?",
+        "German":"Wei geht es Ihnen?"
+        },
+    "amWell": {
+        "French": "Je suis gien, merci",
+        "Spanish": "Estoy muy bien",
+        "German":"Mir geht es gut"
+        },
+    "notWell": {
+        "French": "Je ne vais pas bien",
+        "Spanish": "No estoy bien",
+        "German":"Mir geht es nicht gut"
+        },
+    "noSpeak": {
+        "French": "Je parle un peu de francais.",
+        "German": "Ich spreche nur ein bisschen Deutsch",
+        "Spanish": "Hablo un poco de Espanol."
+        },
+    "sorry": {
+        "French": "Je suis desole.",
+        "Spanish": "Lo Siento.",
+        "German": "Es Tuit mir Lede"
+        },
+    "speakEnglish": {
+        "Spanish":"Habla usted ingles?",
+        "German": "Sprechen Sie Englisch",
+        "French": "Parlez-vous anglais"
+        },
+    "coffee": {
+        "French": "Cafe",
+        "Spanish": "Cafe",
+        "German":"Kaffee"
+        }
+}    
 
 welcome = """
       Welcome to
@@ -92,16 +74,16 @@ print (welcome)
 running = True
 
 while True:
-       print('Enter a choice:' )
-       print('1. Random card')
-       print('2. Add card')
-       print('3. Delete card')
-       print('4. Quit')
-       
-       choice = input()
-       if choice == '':
-           break
-if choice == "2":
+    print('Enter a choice:')
+    print('1. Random card')
+    print('2. Add card')
+    print('3. Delete card')
+    print('4. Quit')
+    
+    choice = input()
+    if choice == '':
+        break
+    if choice == "2":
         new_item_front = input("Please type the card front: ")
         new_item_back = input("Please type the card back: ")
         if new_item_front not in deck:
@@ -109,15 +91,15 @@ if choice == "2":
             print("Added successfully!")
         else:
             print("Word already in deck")
-elif choice == "3":
+    elif choice == "3":
         remove = input("Please input the card front you'd like to remove: ")
         if remove in deck:
             print("Removed " + remove, "--->", deck[remove])
             del deck[remove]
         else:
             print("Word not in deck")
-elif choice == "4":
+    elif choice == "4":
         print("Thanks, see you next time!")
         running = False
-else:
+    else:
         print("Invalid entry")
