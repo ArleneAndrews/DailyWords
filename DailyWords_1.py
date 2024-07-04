@@ -7,10 +7,17 @@ import json
 import glob
 import os
 
-hello = {"German": "Hallo",
-        "French": "Bonjour",
-        "Spanish": "Buenos dias",
-        }
+deck = {
+    greetings,
+    commonwords,
+    numbers,
+}
+
+greetings ={
+    hello= {"Gehellorman": "Hallo",
+            "French": "Bonjour",
+            "Spanish": "Buenos dias",
+            }
 
 nameIs ={
     "French": "Je m'appelle Arlene",
@@ -67,6 +74,7 @@ speakEnglish ={
 "German" : "“Sprechen Sie Englisch?”,
 
  "French" : “Parlez-vous anglais ?”,
+}
 }
 coffee = {
 "French": "Cafe",
