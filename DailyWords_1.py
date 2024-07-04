@@ -3,10 +3,11 @@ Setup file, and a place to keep the running items until they are used correctly
 Base Welcome from https://github.com/jacobcoro/PythonFlashCards/blob/master/Flashcards_0.1.py Not sure if I need it
 """
 from random import randrange
+"""
 import json
 import glob
 import os
-
+"""
 deck = {
     "hello": {
         "German": "Hallo",
@@ -61,29 +62,77 @@ deck = {
     "coffee": {
         "French": "Cafe",
         "Spanish": "Cafe",
-        "German":"Kaffee"
+        "German":"kaffee"
         }
-}    
+}
+""" def print_deck(deck_dict):
+    printout = "Front --> Back:\n\n"
+    for key, value in deck_dict.items():
+        printout += key + " --> " + value + "\n"
+    return printout """
 
-welcome = """
+def self_report_quiz(deck_dict):
+    """
+    gives a flashcard quiz where quiz taker guesses the word and records him/herself
+    whether the right answer was raised
+
+    takes two args,
+    deck_dict: A dictionary of word-definition pairs
+    quiz_direction: a string, "f" for front to back, and "b" for back to front """
+
+    # Converts dict into list of key/value tuples
+    tuple_pair_dict = []
+    for pair in deck_dict.items():
+        tuple_pair_dict.append(pair)
+
+    score = 0
+    top_score = len(tuple_pair_dict)
+    print("\nQuiz --- Self report\n----------------------------\n")
+    # Front to back. Display front of card(key) in prompt, and answer must be its value
+    while len(tuple_pair_dict) > 0:
+        # From the tuple list, select a random index, and the 0th value of that (which is the card front)
+        random_pair = tuple_pair_dict[randrange(0, len(tuple_pair_dict))]
+        response = input(random_pair + "\nInput any key to show answer:")
+        stop = False
+        while len(response) >= 0 and not stop:
+            correct_or_not = input("The answer is---> " + random_pair + "\nDid you guess correctly? "
+                                   "Answer y for yes and n for no: \n")
+            if correct_or_not == "y":
+                score += 1
+                tuple_pair_dict.remove(random_pair)
+                stop = True
+            elif correct_or_not == "n":
+                tuple_pair_dict.remove(random_pair)
+                stop = True
+            else:
+                print("Incorrect input.")
+    print("End of quiz. Your score was " + str(100 * score / top_score) + "%. You got " + str(score) +
+          " out of " + str(top_score) + " questions correct.")
+
+
+WELCOME = """
       Welcome to
       
 ^_^   Daily Words   ^_^
 """
-print (welcome)
-running = True
+menu = """\nmenu:
 
-while True:
-    print('Enter a choice:')
-    print('1. Random card')
-    print('2. Add card')
-    print('3. Delete card')
-    print('4. Quit')
-    
-    choice = input()
-    if choice == '':
+1. View single card
+2. Add item
+3. Delete item
+4. Full deck Quiz
+5. Quit
+
+Your choice: """
+
+print (WELCOME)
+RUNNING = True
+
+while RUNNING:
+    menu_choice = input(menu)
+    if menu_choice == '':
         break
-    if choice == "2":
+    if menu_choice == "2":
         new_item_front = input("Please type the card front: ")
         new_item_back = input("Please type the card back: ")
         if new_item_front not in deck:
@@ -91,14 +140,16 @@ while True:
             print("Added successfully!")
         else:
             print("Word already in deck")
-    elif choice == "3":
-        remove = input("Please input the card front you'd like to remove: ")
+    elif menu_choice == "3":
+        remove = input("Please input the English word you'd like to remove: ")
         if remove in deck:
             print("Removed " + remove, "--->", deck[remove])
             del deck[remove]
         else:
             print("Word not in deck")
-    elif choice == "4":
+    elif menu_choice == "4":
+            self_report_quiz(deck)
+    elif menu_choice == "5":
         print("Thanks, see you next time!")
         running = False
     else:
