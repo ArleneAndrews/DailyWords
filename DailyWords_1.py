@@ -1,15 +1,17 @@
 """
 Setup file, and a place to keep the running items until they are used correctly
-Base Welcome from https://github.com/jacobcoro/PythonFlashCards/blob/master/Flashcards_0.1.py Not sure if I need it
+Base Welcome from https://github.com/jacobcoro/PythonFlashCards/blob/master/Flashcards_0.1.py
+Not sure if I need it
 """
 from random import randrange
-"""
-import json
+
+""" import json
 import glob
-import os
-"""
+import os """
+
 deck = {
     "hello": {
+        "Word" : "Hello",
         "German": "Hallo",
         "French": "Bonjour",
         "Spanish": "Buenos dias"
@@ -90,7 +92,7 @@ def self_report_quiz(deck_dict):
     print("\nQuiz --- Self report\n----------------------------\n")
     # Front to back. Display front of card(key) in prompt, and answer must be its value
     while len(tuple_pair_dict) > 0:
-        # From the tuple list, select a random index, and the 0th value of that (which is the card front)
+        # Select a random index, and the 0th value of that (card front)
         random_pair = tuple_pair_dict[randrange(0, len(tuple_pair_dict))]
         response = input(random_pair + "\nInput any key to show answer:")
         stop = False
@@ -148,7 +150,7 @@ while RUNNING:
         else:
             print("Word not in deck")
     elif menu_choice == "4":
-            self_report_quiz(deck)
+        self_report_quiz(deck)
     elif menu_choice == "5":
         print("Thanks, see you next time!")
         running = False
